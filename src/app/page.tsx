@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Github, 
   Linkedin, 
@@ -23,7 +23,7 @@ import {
   Zap
 } from "lucide-react";
 import { useState, useEffect } from "react";
-import ThemeToggle from "@/components/ThemeToggle";
+
 
 const experience = [
   {
@@ -172,8 +172,6 @@ const staggerContainer = {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 100], [0, -50]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -202,16 +200,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
       {/* Navigation Header */}
       <motion.header 
-        className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200"
-        style={{ y }}
+        className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/10 shadow-lg"
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div
-              className="text-2xl font-bold text-gray-900"
+              className="text-2xl font-bold text-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
@@ -225,20 +222,17 @@ export default function Home() {
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`text-sm font-medium transition-colors ${
+                  className={`text-sm font-medium transition-colors duration-200 ${
                     activeSection === section 
-                      ? 'text-blue-600 border-b-2 border-blue-600' 
-                      : 'text-gray-600 hover:text-blue-600'
+                      ? 'text-white border-b-2 border-white font-semibold' 
+                      : 'text-[#a9a9a9] hover:text-white'
                   }`}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </button>
               ))}
               
-              {/* Theme Toggle */}
-              <div className="ml-4">
-                <ThemeToggle />
-              </div>
+
             </div>
 
             {/* Mobile menu button */}
@@ -253,7 +247,7 @@ export default function Home() {
                       {/* Mobile Navigation */}
             {isMenuOpen && (
               <motion.div
-                className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200"
+                className="md:hidden absolute top-full left-0 right-0 bg-black shadow-lg border-b border-white/10"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -265,21 +259,15 @@ export default function Home() {
                       onClick={() => scrollToSection(section)}
                       className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         activeSection === section 
-                          ? 'text-blue-600 bg-blue-50' 
-                          : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                          ? 'text-white bg-[#181818]' 
+                          : 'text-[#a9a9a9] hover:text-white hover:bg-[#181818]'
                       }`}
                     >
                       {section.charAt(0).toUpperCase() + section.slice(1)}
                     </button>
                   ))}
                   
-                  {/* Mobile Theme Toggle */}
-                  <div className="pt-4 border-t border-gray-200">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-600">Theme</span>
-                      <ThemeToggle />
-                    </div>
-                  </div>
+
                 </div>
               </motion.div>
             )}
@@ -287,143 +275,54 @@ export default function Home() {
       </motion.header>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/5 to-indigo-600/5"></div>
-        
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Badge */}
-            <motion.div
-              className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium mb-8 shadow-lg"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              <Code className="w-4 h-4 mr-2" />
-              Senior Software Engineer
-            </motion.div>
-
-            {/* Main Heading */}
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                Arjun Govindan
-              </span>
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight">
+              Systems Engineer
             </h1>
-
-            {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Building scalable systems and leading technical initiatives at the intersection of 
-              <span className="font-semibold text-blue-600"> backend engineering</span> and 
-              <span className="font-semibold text-purple-600"> cloud architecture</span>
+            <p className="text-xl md:text-2xl text-white mb-12 max-w-2xl mx-auto leading-relaxed">
+              I write fast backend systems, build my own tools, and automate tasks that are tolerable for others.
             </p>
-
-            {/* Contact Info */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm text-gray-600">
-              <span>📍 Bangalore, India</span>
-              <span>📧 arjungovindan98@gmail.com</span>
-              <span>📱 +91 8281890308</span>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex justify-center space-x-4 mb-12">
-              <motion.a
-                href="https://linkedin.com/in/arjungovindan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-blue-600 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Linkedin className="w-6 h-6" />
-              </motion.a>
-              <motion.a
-                href="https://github.com/arjgov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Github className="w-6 h-6" />
-              </motion.a>
-            </div>
-
-            {/* Expertise Tags */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <motion.div
-                className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
-                whileHover={{ scale: 1.05, y: -2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Database className="w-5 h-5 text-blue-600" />
-                <span className="text-gray-700 font-medium">Backend Focus</span>
-              </motion.div>
-              <motion.div
-                className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
-                whileHover={{ scale: 1.05, y: -2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Server className="w-5 h-5 text-green-600" />
-                <span className="text-gray-700 font-medium">Systems Design</span>
-              </motion.div>
-              <motion.div
-                className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
-                whileHover={{ scale: 1.05, y: -2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Globe className="w-5 h-5 text-purple-600" />
-                <span className="text-gray-700 font-medium">Fullstack</span>
-              </motion.div>
-            </div>
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
+            
+            {/* CTA Links */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <motion.a
                 href="#experience"
-                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
-                whileHover={{ scale: 1.05, y: -2 }}
+                className="text-white text-lg hover:opacity-80 transition-opacity"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                View My Work
-                <ArrowRight className="w-5 h-5 ml-2" />
+                View My Work →
               </motion.a>
               <motion.a
-                href="/api/resume"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg border-2 border-gray-300 shadow-sm hover:bg-gray-50 transition-all duration-300 text-lg"
-                whileHover={{ scale: 1.05, y: -2 }}
+                href="#contact"
+                className="text-white text-lg hover:opacity-80 transition-opacity"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                <Download className="w-5 h-5 mr-2" />
-                Download Resume
+                Get In Touch →
               </motion.a>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
-
+        
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <ChevronDown className="w-6 h-6 text-gray-400" />
+          <ChevronDown className="w-6 h-6" />
         </motion.div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white border-b border-gray-100">
+      <section className="py-16 bg-black border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-8"
@@ -442,10 +341,10 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <div className="flex justify-center mb-3">
-                  <stat.icon className="w-8 h-8 text-blue-600" />
+                  <stat.icon className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
+                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-[#a9a9a9]">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -453,7 +352,7 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-gray-50">
+      <section id="experience" className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -462,8 +361,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Professional Experience</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Professional Experience</h2>
+            <p className="text-xl text-[#a9a9a9] max-w-2xl mx-auto">
               My journey building scalable systems and leading technical initiatives across multiple domains.
             </p>
           </motion.div>
@@ -481,7 +380,7 @@ export default function Home() {
                 className="relative"
                 variants={fadeInUp}
               >
-                <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                <div className="bg-[#181818] rounded-2xl p-8 shadow-lg border border-[rgba(255,255,255,0.1)] hover:shadow-xl transition-all duration-300">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
                     <div className="flex items-center space-x-4">
                       <motion.div 
@@ -492,14 +391,14 @@ export default function Home() {
                         {job.logo}
                       </motion.div>
                       <div>
-                        <h3 className="text-3xl font-bold text-gray-900 mb-2">{job.company}</h3>
-                        <p className="text-xl text-gray-600 mb-1">{job.role}</p>
-                        <p className="text-lg text-gray-500">{job.years}</p>
+                        <h3 className="text-3xl font-bold text-white mb-2">{job.company}</h3>
+                        <p className="text-xl text-[#a9a9a9] mb-1">{job.role}</p>
+                        <p className="text-lg text-[#a9a9a9]">{job.years}</p>
                       </div>
                     </div>
                     <div className="mt-4 md:mt-0">
                       <motion.span 
-                        className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
+                        className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-[#181818] text-white border border-[rgba(255,255,255,0.1)]"
                         whileHover={{ scale: 1.05 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -512,19 +411,19 @@ export default function Home() {
                     {job.projects.map((project, pIndex) => (
                       <motion.div
                         key={pIndex}
-                        className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:border-blue-300 transition-all duration-300"
-                        whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
+                        className="bg-[#181818] rounded-xl p-6 border border-white/10 hover:border-white transition-all duration-300"
+                        whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.3)" }}
                       >
                         <div className="flex items-start justify-between mb-4">
-                          <h4 className="text-xl font-semibold text-gray-900">{project.name}</h4>
-                          <ExternalLink className="w-5 h-5 text-gray-400" />
+                          <h4 className="text-xl font-semibold text-white">{project.name}</h4>
+                          <ExternalLink className="w-5 h-5 text-[#a9a9a9]" />
                         </div>
-                        <p className="text-gray-600 mb-4 text-lg">{project.summary}</p>
-                        <p className="text-gray-700 mb-4">{project.details}</p>
+                        <p className="text-[#a9a9a9] mb-4 text-lg">{project.summary}</p>
+                        <p className="text-white mb-4">{project.details}</p>
                         
                         {project.impact && (
                           <div className="mb-4">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#181818] text-white border border-[rgba(255,255,255,0.1)]">
                               <Star className="w-4 h-4 mr-1" />
                               {project.impact}
                             </span>
@@ -535,7 +434,7 @@ export default function Home() {
                           {project.tech.map((tech, tIndex) => (
                             <span
                               key={tIndex}
-                              className="px-3 py-1 bg-white text-gray-700 text-sm rounded-md border border-gray-200 font-medium"
+                              className="px-3 py-1 bg-[#181818] text-white text-sm rounded-md border border-[rgba(255,255,255,0.1)] font-medium"
                             >
                               {tech}
                             </span>
@@ -552,7 +451,7 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-white">
+      <section id="skills" className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -561,8 +460,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Technical Skills</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Technical Skills</h2>
+            <p className="text-xl text-[#a9a9a9] max-w-2xl mx-auto">
               A comprehensive toolkit for building modern, scalable applications.
             </p>
           </motion.div>
@@ -577,14 +476,14 @@ export default function Home() {
             {Object.entries(skills).map(([category, skillList], index) => (
               <motion.div
                 key={category}
-                className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:border-blue-300 transition-all duration-300"
+                className="bg-[#181818] rounded-xl p-6 border border-white/10 hover:border-white transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
+                whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.3)" }}
               >
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 capitalize">
+                <h3 className="text-xl font-semibold text-white mb-4 capitalize">
                   {category}
                 </h3>
                                  <div className="space-y-3">
@@ -597,19 +496,19 @@ export default function Home() {
                        transition={{ delay: skillIndex * 0.05, duration: 0.3 }}
                        viewport={{ once: true }}
                      >
-                       <div className="flex items-center justify-between">
-                         <span className="text-sm font-medium text-gray-700">{skill.name}</span>
-                         <span className="text-xs text-gray-500">{skill.proficiency}%</span>
-                       </div>
-                       <div className="w-full bg-gray-200 rounded-full h-2">
-                         <motion.div
-                           className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
-                           initial={{ width: 0 }}
-                           whileInView={{ width: `${skill.proficiency}%` }}
-                           transition={{ delay: skillIndex * 0.1, duration: 1, ease: "easeOut" }}
-                           viewport={{ once: true }}
-                         />
-                       </div>
+                                               <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-white">{skill.name}</span>
+                          <span className="text-xs text-[#a9a9a9]">{skill.proficiency}%</span>
+                        </div>
+                        <div className="w-full bg-[#181818] rounded-full h-2">
+                          <motion.div
+                            className="bg-white h-2 rounded-full"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${skill.proficiency}%` }}
+                            transition={{ delay: skillIndex * 0.1, duration: 1, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                          />
+                        </div>
                      </motion.div>
                    ))}
                  </div>
@@ -620,7 +519,7 @@ export default function Home() {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-20 bg-gray-50">
+      <section id="education" className="py-20 bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -629,14 +528,14 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Education</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Education</h2>
+            <p className="text-xl text-[#a9a9a9] max-w-2xl mx-auto">
               My academic foundation in computer science and engineering.
             </p>
           </motion.div>
 
           <motion.div
-            className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
+            className="bg-[#181818] rounded-2xl p-8 shadow-lg border border-[rgba(255,255,255,0.1)]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -644,10 +543,10 @@ export default function Home() {
           >
             <div className="text-center">
               <div className="text-4xl mb-4">🎓</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{education.college}</h3>
-              <p className="text-xl text-gray-600 mb-2">{education.degree}</p>
-              <p className="text-lg text-gray-500 mb-4">{education.years}</p>
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 font-semibold">
+              <h3 className="text-2xl font-bold text-white mb-2">{education.college}</h3>
+              <p className="text-xl text-[#a9a9a9] mb-2">{education.degree}</p>
+              <p className="text-lg text-[#a9a9a9] mb-4">{education.years}</p>
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#181818] text-white font-semibold border border-[rgba(255,255,255,0.1)]">
                 CGPA: {education.cgpa}
               </div>
             </div>
@@ -656,7 +555,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-white">
+      <section id="testimonials" className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -665,8 +564,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What People Say</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">What People Say</h2>
+            <p className="text-xl text-[#a9a9a9] max-w-2xl mx-auto">
               Feedback from colleagues and managers about my work and collaboration.
             </p>
           </motion.div>
@@ -697,24 +596,24 @@ export default function Home() {
             ].map((testimonial, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:border-blue-300 transition-all duration-300"
+                className="bg-[#181818] rounded-xl p-6 border border-[rgba(255,255,255,0.1)] hover:border-white transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
+                whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.3)" }}
               >
                 <div className="mb-4">
-                  <div className="flex text-yellow-400 mb-2">
+                  <div className="flex text-white mb-2">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <p className="text-gray-700 italic">"{testimonial.quote}"</p>
+                  <p className="text-white italic">"{testimonial.quote}"</p>
                 </div>
-                <div className="border-t border-gray-200 pt-4">
-                  <p className="font-semibold text-gray-900">{testimonial.author}</p>
-                  <p className="text-sm text-gray-600">{testimonial.company}</p>
+                <div className="border-t border-[rgba(255,255,255,0.1)] pt-4">
+                  <p className="font-semibold text-white">{testimonial.author}</p>
+                  <p className="text-sm text-[#a9a9a9]">{testimonial.company}</p>
                 </div>
               </motion.div>
             ))}
@@ -723,7 +622,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900">
+      <section id="contact" className="py-20 bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -732,7 +631,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-white mb-4">Let's Connect</h2>
-            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-[#a9a9a9] mb-12 max-w-2xl mx-auto">
               I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and innovation.
             </p>
             
@@ -745,7 +644,7 @@ export default function Home() {
             >
               <motion.a
                 href="mailto:arjungovindan98@gmail.com"
-                className="flex items-center space-x-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+                className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -757,7 +656,7 @@ export default function Home() {
                 href="https://linkedin.com/in/arjungovindan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+                className="flex items-center space-x-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-colors shadow-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -769,7 +668,7 @@ export default function Home() {
                 href="https://github.com/arjgov"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-8 py-4 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-900 transition-colors shadow-lg"
+                className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -779,13 +678,13 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              className="mt-12 pt-8 border-t border-gray-700"
+              className="mt-12 pt-8 border-t border-[rgba(255,255,255,0.1)]"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <p className="text-gray-400 text-sm">
+              <p className="text-[#a9a9a9] text-sm">
                 Available for full-time opportunities and interesting freelance projects
               </p>
             </motion.div>
@@ -802,7 +701,7 @@ export default function Home() {
       >
         <motion.a
           href="/api/resume"
-          className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          className="flex items-center justify-center w-16 h-16 bg-white text-black rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
           title="Download Resume"
@@ -814,9 +713,9 @@ export default function Home() {
       </motion.div>
 
       {/* Footer */}
-      <footer className="py-8 bg-gray-900 text-center">
+      <footer className="py-8 bg-black text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-gray-400 text-sm">
+          <p className="text-[#a9a9a9] text-sm">
             © 2024 Arjun Govindan. Built with Next.js, Tailwind CSS, and Framer Motion.
           </p>
         </div>
