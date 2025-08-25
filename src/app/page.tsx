@@ -23,6 +23,7 @@ import {
   Zap
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import LetterGlitch from "@/components/LetterGlitch";
 
 
 const experience = [
@@ -275,39 +276,62 @@ export default function Home() {
       </motion.header>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* LetterGlitch Background */}
+        <div className="absolute inset-0 z-0">
+          <LetterGlitch
+            glitchSpeed={50}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
+          />
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Main Heading with staggered animation */}
+          <motion.h1 
+            className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            Hey, I'm Arjun.
+          </motion.h1>
+          
+          {/* Subtitle with delay */}
+          <motion.p 
+            className="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight">
-              Systems Engineer
-            </h1>
-            <p className="text-xl md:text-2xl text-white mb-12 max-w-2xl mx-auto leading-relaxed">
-              I write fast backend systems, build my own tools, and automate tasks that are tolerable for others.
-            </p>
-            
-            {/* CTA Links */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <motion.a
-                href="#experience"
-                className="text-white text-lg hover:opacity-80 transition-opacity"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View My Work →
-              </motion.a>
-              <motion.a
-                href="#contact"
-                className="text-white text-lg hover:opacity-80 transition-opacity"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Get In Touch →
-              </motion.a>
-            </div>
+            A full-stack engineer who makes sure "it works on my machine" actually works on your machine.
+          </motion.p>
+          
+          {/* CTA Links with staggered animation */}
+          <motion.div 
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          >
+            <motion.a
+              href="#experience"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base relative group"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">View My Work →</span>
+            </motion.a>
+            <motion.a
+              href="#contact"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base relative group"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">Get In Touch →</span>
+            </motion.a>
           </motion.div>
         </div>
         
@@ -315,10 +339,17 @@ export default function Home() {
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
           animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChevronDown className="w-6 h-6" />
+          <motion.div
+            animate={{ rotate: [0, 5, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="w-6 h-6" />
+          </motion.div>
         </motion.div>
+        
+
       </section>
 
       {/* Stats Section */}
