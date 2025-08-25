@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, easeOut } from "framer-motion";
 import { 
   Github, 
   Linkedin, 
@@ -20,9 +20,10 @@ import {
   Star,
   Award,
   Users,
-  Zap
+  Zap,
+  FileText
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import LetterGlitch from "@/components/LetterGlitch";
 
 
@@ -173,6 +174,17 @@ const staggerContainer = {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  
+  // Scroll-based animation for download button
+  const containerRef = useRef(null);
+  const { scrollY } = useScroll();
+  const buttonWidth = useTransform(scrollY, [0, 300], [160, 64], { ease: easeOut });
+  const buttonHeight = useTransform(scrollY, [0, 300], [48, 64], { ease: easeOut });
+  const buttonPadding = useTransform(scrollY, [0, 300], [24, 0], { ease: easeOut });
+  const textOpacity = useTransform(scrollY, [0, 200], [1, 0], { ease: easeOut });
+  const textMaxWidth = useTransform(scrollY, [0, 200], [100, 0], { ease: easeOut });
+  const iconSize = useTransform(scrollY, [0, 300], [20, 24], { ease: easeOut });
+  const iconMargin = useTransform(scrollY, [0, 300], [8, 0], { ease: easeOut });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -728,18 +740,39 @@ export default function Home() {
         className="fixed bottom-8 right-8 z-40"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
+        transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
       >
         <motion.a
           href="/api/resume"
-          className="flex items-center justify-center w-16 h-16 bg-white text-black rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-          whileHover={{ scale: 1.1, rotate: 5 }}
+          className="flex items-center justify-center bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
+          style={{
+            width: buttonWidth,
+            height: buttonHeight,
+            paddingLeft: buttonPadding,
+            paddingRight: buttonPadding,
+          }}
+          whileHover={{ scale: 1.1, y: -3 }}
           whileTap={{ scale: 0.9 }}
           title="Download Resume"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Download className="w-6 h-6" />
+          <motion.div
+            style={{
+              width: iconSize,
+              height: iconSize,
+              marginRight: iconMargin,
+            }}
+            className="flex items-center justify-center"
+          >
+            <FileText className="text-black w-full h-full" />
+          </motion.div>
+          <motion.span
+            style={{ opacity: textOpacity, maxWidth: textMaxWidth }}
+            className="whitespace-nowrap text-black font-medium overflow-hidden"
+          >
+            Resume
+          </motion.span>
         </motion.a>
       </motion.div>
 
