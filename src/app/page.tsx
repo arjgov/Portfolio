@@ -398,11 +398,12 @@ export default function Home() {
                 <ArrowRight className="w-5 h-5 ml-2" />
               </motion.a>
               <motion.a
-                href="/Arjun_Govindan_SDE_2_May_2025.pdf"
-                download
+                href="/api/resume"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg border-2 border-gray-300 shadow-sm hover:bg-gray-50 transition-all duration-300 text-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Download className="w-5 h-5 mr-2" />
                 Download Resume
@@ -800,12 +801,13 @@ export default function Home() {
         transition={{ delay: 1, duration: 0.5 }}
       >
         <motion.a
-          href="/Arjun_Govindan_SDE_2_May_2025.pdf"
-          download
+          href="/api/resume"
           className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
           title="Download Resume"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <Download className="w-6 h-6" />
         </motion.a>
