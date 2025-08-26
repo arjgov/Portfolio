@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import LetterGlitch from "@/components/LetterGlitch";
+import { Timeline } from "@/components/Timeline";
 
 
 const experience = [
@@ -395,103 +396,77 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-black">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-white mb-4">Professional Experience</h2>
-            <p className="text-xl text-[#a9a9a9] max-w-2xl mx-auto">
-              My journey building scalable systems and leading technical initiatives across multiple domains.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="space-y-12"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {experience.map((job, index) => (
-              <motion.div
-                key={index}
-                className="relative"
-                variants={fadeInUp}
-              >
-                <div className="bg-[#181818] rounded-2xl p-8 shadow-lg border border-[rgba(255,255,255,0.1)] hover:shadow-xl transition-all duration-300">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-                    <div className="flex items-center space-x-4">
-                      <motion.div 
-                        className="text-4xl"
-                        whileHover={{ scale: 1.2, rotate: 10 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        {job.logo}
-                      </motion.div>
-                      <div>
-                        <h3 className="text-3xl font-bold text-white mb-2">{job.company}</h3>
-                        <p className="text-xl text-[#a9a9a9] mb-1">{job.role}</p>
-                        <p className="text-lg text-[#a9a9a9]">{job.years}</p>
-                      </div>
-                    </div>
-                    <div className="mt-4 md:mt-0">
-                      <motion.span 
-                        className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-[#181818] text-white border border-[rgba(255,255,255,0.1)]"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        {job.years}
-                      </motion.span>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-6">
-                    {job.projects.map((project, pIndex) => (
-                      <motion.div
-                        key={pIndex}
-                        className="bg-[#181818] rounded-xl p-6 border border-white/10 hover:border-white transition-all duration-300"
-                        whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.3)" }}
-                      >
-                        <div className="flex items-start justify-between mb-4">
-                          <h4 className="text-xl font-semibold text-white">{project.name}</h4>
-                          <ExternalLink className="w-5 h-5 text-[#a9a9a9]" />
-                        </div>
-                        <p className="text-[#a9a9a9] mb-4 text-lg">{project.summary}</p>
-                        <p className="text-white mb-4">{project.details}</p>
-                        
-                        {project.impact && (
-                          <div className="mb-4">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#181818] text-white border border-[rgba(255,255,255,0.1)]">
-                              <Star className="w-4 h-4 mr-1" />
-                              {project.impact}
-                            </span>
-                          </div>
-                        )}
-                        
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech, tIndex) => (
-                            <span
-                              key={tIndex}
-                              className="px-3 py-1 bg-[#181818] text-white text-sm rounded-md border border-[rgba(255,255,255,0.1)] font-medium"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
+      <Timeline 
+        data={[
+          {
+            title: "Quarks",
+            content: (
+              <div className="space-y-4">
+                <div className="text-white">
+                  <h4 className="text-xl font-semibold mb-2">Senior Software Engineer</h4>
+                  <p className="text-neutral-300 mb-3">Sep 2024 – Present</p>
+                  <p className="text-neutral-300 text-sm leading-relaxed">
+                    Building scalable recommendation systems and infrastructure. 
+                    Delivered Shop the Look Experience with &lt;100ms latency, 
+                    dynamic product bundles, and V2 Rank APIs.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {["FastAPI", "PostgreSQL", "Redis", "GCP", "Docker", "Kubernetes"].map((tech) => (
+                      <span key={tech} className="text-xs text-white bg-neutral-800 px-2 py-1 rounded-full border border-neutral-700">
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+              </div>
+            )
+          },
+          {
+            title: "Kyro",
+            content: (
+              <div className="space-y-4">
+                <div className="text-white">
+                  <h4 className="text-xl font-semibold mb-2">Software Engineer</h4>
+                  <p className="text-neutral-300 mb-3">May 2022 – Sep 2024</p>
+                  <p className="text-neutral-300 text-sm leading-relaxed">
+                    Developed microservices for project management, forms experience, 
+                    and real-time event streaming. Processed 150K+ reports with 98% test coverage.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {["FastAPI", "React.js", "MongoDB", "Azure", "Kubernetes"].map((tech) => (
+                      <span key={tech} className="text-xs text-white bg-neutral-800 px-2 py-1 rounded-full border border-neutral-700">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )
+          },
+          {
+            title: "Cognizant",
+            content: (
+              <div className="space-y-4">
+                <div className="text-white">
+                  <h4 className="text-xl font-semibold mb-2">Programmer Analyst</h4>
+                  <p className="text-neutral-300 mb-3">Dec 2020 – Apr 2022</p>
+                  <p className="text-neutral-300 text-sm leading-relaxed">
+                    Built ETL pipelines for data warehousing and RESTful APIs for internal metrics. 
+                    Streamlined data analysis workflows across the organization.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {["Django", "Flask", "SQL", "AWS", "React"].map((tech) => (
+                      <span key={tech} className="text-xs text-white bg-neutral-800 px-2 py-1 rounded-full border border-neutral-700">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )
+          }
+        ]}
+      />
 
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-black">
