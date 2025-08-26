@@ -27,6 +27,7 @@ import { useState, useEffect, useRef } from "react";
 import LetterGlitch from "@/components/LetterGlitch";
 import { Timeline } from "@/components/Timeline";
 import CountUp from "@/components/CountUp";
+import SkillsChromaGrid from "@/components/SkillsChromaGrid";
 
 
 const experience = [
@@ -105,38 +106,38 @@ const experience = [
   }
 ];
 
-// Your actual skills organized by category with Devicon classes
+// Your actual skills organized by category with Devicon classes and ChromaGrid styling
 const skillsData = [
   // Languages
-  { name: "Python", category: "Language", icon: "devicon-python-plain" },
-  { name: "C++", category: "Language", icon: "devicon-cplusplus-plain" },
-  { name: "Java", category: "Language", icon: "devicon-java-plain" },
-  { name: "Typescript", category: "Language", icon: "devicon-typescript-plain" },
-  { name: "Bicep", category: "Language", icon: "devicon-azure-plain" },
+  { name: "Python", category: "Language", icon: "devicon-python-plain", borderColor: "#3776AB", gradient: "linear-gradient(135deg, #3776AB20, #000)", iconColor: "#3776AB" },
+  { name: "C++", category: "Language", icon: "devicon-cplusplus-plain", borderColor: "#00599C", gradient: "linear-gradient(135deg, #00599C20, #000)", iconColor: "#00599C" },
+  { name: "Java", category: "Language", icon: "devicon-java-plain", borderColor: "#ED8B00", gradient: "linear-gradient(135deg, #ED8B0020, #000)", iconColor: "#ED8B00" },
+  { name: "Typescript", category: "Language", icon: "devicon-typescript-plain", borderColor: "#3178C6", gradient: "linear-gradient(135deg, #3178C620, #000)", iconColor: "#3178C6" },
+  { name: "Bicep", category: "Language", icon: "devicon-azure-plain", borderColor: "#0089D6", gradient: "linear-gradient(135deg, #0089D620, #000)", iconColor: "#0089D6" },
   
   // Technologies
-  { name: "Azure", category: "Cloud", icon: "devicon-azure-plain" },
-  { name: "GCP", category: "Cloud", icon: "devicon-googlecloud-plain" },
-  { name: "MongoDB", category: "Database", icon: "devicon-mongodb-plain" },
-  { name: "MySQL", category: "Database", icon: "devicon-mysql-plain" },
-  { name: "PostgreSQL", category: "Database", icon: "devicon-postgresql-plain" },
-  { name: "Docker", category: "DevOps", icon: "devicon-docker-plain" },
-  { name: "Kubernetes", category: "DevOps", icon: "devicon-kubernetes-plain" },
-  { name: "Git", category: "Version Control", icon: "devicon-git-plain" },
-  { name: "REST APIs", category: "API", icon: "devicon-javascript-plain" },
-  { name: "Jinja", category: "Template", icon: "devicon-python-plain" },
-  { name: "Redis", category: "Cache", icon: "devicon-redis-plain" },
-  { name: "Auth", category: "Security", icon: "devicon-javascript-plain" },
+  { name: "Azure", category: "Cloud", icon: "devicon-azure-plain", borderColor: "#0089D6", gradient: "linear-gradient(135deg, #0089D620, #000)", iconColor: "#0089D6" },
+  { name: "GCP", category: "Cloud", icon: "devicon-googlecloud-plain", borderColor: "#4285F4", gradient: "linear-gradient(135deg, #4285F420, #000)", iconColor: "#4285F4" },
+  { name: "MongoDB", category: "Database", icon: "devicon-mongodb-plain", borderColor: "#47A248", gradient: "linear-gradient(135deg, #47A24820, #000)", iconColor: "#47A248" },
+  { name: "MySQL", category: "Database", icon: "devicon-mysql-plain", borderColor: "#4479A1", gradient: "linear-gradient(135deg, #4479A120, #000)", iconColor: "#4479A1" },
+  { name: "PostgreSQL", category: "Database", icon: "devicon-postgresql-plain", borderColor: "#336791", gradient: "linear-gradient(135deg, #33679120, #000)", iconColor: "#336791" },
+  { name: "Docker", category: "DevOps", icon: "devicon-docker-plain", borderColor: "#2496ED", gradient: "linear-gradient(135deg, #2496ED20, #000)", iconColor: "#2496ED" },
+  { name: "Kubernetes", category: "DevOps", icon: "devicon-kubernetes-plain", borderColor: "#326CE5", gradient: "linear-gradient(135deg, #326CE520, #000)", iconColor: "#326CE5" },
+  { name: "Git", category: "Version Control", icon: "devicon-git-plain", borderColor: "#F05032", gradient: "linear-gradient(135deg, #F0503220, #000)", iconColor: "#F05032" },
+  { name: "REST APIs", category: "API", icon: "devicon-javascript-plain", borderColor: "#F7DF1E", gradient: "linear-gradient(135deg, #F7DF1E20, #000)", iconColor: "#F7DF1E" },
+  { name: "Jinja", category: "Template", icon: "devicon-python-plain", borderColor: "#B41717", gradient: "linear-gradient(135deg, #B4171720, #000)", iconColor: "#B41717" },
+  { name: "Redis", category: "Cache", icon: "devicon-redis-plain", borderColor: "#DC382D", gradient: "linear-gradient(135deg, #DC382D20, #000)", iconColor: "#DC382D" },
+  { name: "Auth", category: "Security", icon: "devicon-javascript-plain", borderColor: "#FFD700", gradient: "linear-gradient(135deg, #FFD70020, #000)", iconColor: "#FFD700" },
   
   // Frameworks
-  { name: "FastAPI", category: "Framework", icon: "devicon-python-plain" },
-  { name: "Django", category: "Framework", icon: "devicon-django-plain" },
-  { name: "Flask", category: "Framework", icon: "devicon-flask-plain" },
-  { name: "Next.js", category: "Framework", icon: "devicon-nextjs-plain" },
-  { name: "Node.js", category: "Framework", icon: "devicon-nodejs-plain" },
-  { name: "React", category: "Framework", icon: "devicon-react-original" },
-  { name: "Express", category: "Framework", icon: "devicon-express-original" },
-  { name: "Pytest", category: "Testing", icon: "devicon-python-plain" }
+  { name: "FastAPI", category: "Framework", icon: "devicon-python-plain", borderColor: "#059669", gradient: "linear-gradient(135deg, #05966920, #000)", iconColor: "#059669" },
+  { name: "Django", category: "Framework", icon: "devicon-django-plain", borderColor: "#092E20", gradient: "linear-gradient(135deg, #092E2020, #000)", iconColor: "#092E20" },
+  { name: "Flask", category: "Framework", icon: "devicon-flask-plain", borderColor: "#000000", gradient: "linear-gradient(135deg, #00000020, #000)", iconColor: "#FFFFFF" },
+  { name: "Next.js", category: "Framework", icon: "devicon-nextjs-plain", borderColor: "#000000", gradient: "linear-gradient(135deg, #00000020, #000)", iconColor: "#FFFFFF" },
+  { name: "Node.js", category: "Framework", icon: "devicon-nodejs-plain", borderColor: "#339933", gradient: "linear-gradient(135deg, #33993320, #000)", iconColor: "#339933" },
+  { name: "React", category: "Framework", icon: "devicon-react-original", borderColor: "#61DAFB", gradient: "linear-gradient(135deg, #61DAFB20, #000)", iconColor: "#61DAFB" },
+  { name: "Express", category: "Framework", icon: "devicon-express-original", borderColor: "#000000", gradient: "linear-gradient(135deg, #00000020, #000)", iconColor: "#FFFFFF" },
+  { name: "Pytest", category: "Testing", icon: "devicon-python-plain", borderColor: "#0A9EDC", gradient: "linear-gradient(135deg, #0A9EDC20, #000)", iconColor: "#0A9EDC" }
 ];
 
 
@@ -473,26 +474,19 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="flex flex-wrap gap-3"
+            className="min-h-[400px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {skillsData.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                className="flex items-center space-x-2 bg-neutral-800 text-white px-3 py-2 rounded-full border border-neutral-700 hover:border-white/50 transition-all duration-200 cursor-pointer group"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.03, duration: 0.3 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -2, scale: 1.05 }}
-              >
-                <i className={`${skill.icon} text-lg`}></i>
-                <span className="text-xs font-medium">{skill.name}</span>
-              </motion.div>
-            ))}
+            <SkillsChromaGrid 
+              skills={skillsData}
+              radius={250}
+              damping={0.4}
+              fadeOut={0.8}
+              ease="power3.out"
+            />
           </motion.div>
         </div>
       </section>
