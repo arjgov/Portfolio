@@ -98,6 +98,20 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Improved button hover effects */
 .btn-hover {
+
+/* CountUp animation styling */
+.count-up-text {
+  display: inline-block;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.count-up-text:hover {
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
   position: relative;
   overflow: hidden;
 }

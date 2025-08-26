@@ -26,6 +26,7 @@ import {
 import { useState, useEffect, useRef } from "react";
 import LetterGlitch from "@/components/LetterGlitch";
 import { Timeline } from "@/components/Timeline";
+import CountUp from "@/components/CountUp";
 
 
 const experience = [
@@ -387,7 +388,16 @@ export default function Home() {
                 <div className="flex justify-center mb-3">
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-3xl font-bold text-white mb-1">
+                  <CountUp
+                    from={0}
+                    to={parseInt(stat.value.replace('+', ''))}
+                    duration={2}
+                    delay={index * 0.2}
+                    className="count-up-text"
+                  />
+                  <span className="text-white">+</span>
+                </div>
                 <div className="text-sm text-[#a9a9a9]">{stat.label}</div>
               </motion.div>
             ))}
@@ -755,7 +765,7 @@ export default function Home() {
       <footer className="py-8 bg-black text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[#a9a9a9] text-sm">
-            © 2024 Arjun Govindan. Built with Next.js, Tailwind CSS, and Framer Motion.
+            © 2025 Arjun Govindan. Built with Next.js, Tailwind CSS, and Reactbits
           </p>
         </div>
       </footer>
