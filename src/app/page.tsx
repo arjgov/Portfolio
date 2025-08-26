@@ -105,45 +105,41 @@ const experience = [
   }
 ];
 
-const skills = {
-  languages: [
-    { name: "Python", proficiency: 95 },
-    { name: "C++", proficiency: 85 },
-    { name: "Java", proficiency: 80 },
-    { name: "Typescript", proficiency: 90 },
-    { name: "Bicep", proficiency: 75 }
-  ],
-  technologies: [
-    { name: "Azure", proficiency: 90 },
-    { name: "GCP", proficiency: 85 },
-    { name: "MongoDB", proficiency: 88 },
-    { name: "MySQL", proficiency: 82 },
-    { name: "PostgreSQL", proficiency: 85 },
-    { name: "Docker", proficiency: 88 },
-    { name: "Kubernetes", proficiency: 80 },
-    { name: "Git", proficiency: 92 },
-    { name: "REST APIs", proficiency: 95 },
-    { name: "Jinja", proficiency: 78 },
-    { name: "Redis", proficiency: 85 },
-    { name: "Auth", proficiency: 80 }
-  ],
-  frameworks: [
-    { name: "FastAPI", proficiency: 92 },
-    { name: "Django", proficiency: 85 },
-    { name: "Flask", proficiency: 80 },
-    { name: "Next.js", proficiency: 88 },
-    { name: "Node.js", proficiency: 82 },
-    { name: "React", proficiency: 85 },
-    { name: "Express", proficiency: 78 },
-    { name: "Pytest", proficiency: 90 }
-  ],
-  concepts: [
-    { name: "Microservices", proficiency: 88 },
-    { name: "Agile", proficiency: 90 },
-    { name: "System Design", proficiency: 85 },
-    { name: "Cloud Architecture", proficiency: 87 }
-  ]
-};
+// Your actual skills organized by category with Devicon classes
+const skillsData = [
+  // Languages
+  { name: "Python", category: "Language", icon: "devicon-python-plain" },
+  { name: "C++", category: "Language", icon: "devicon-cplusplus-plain" },
+  { name: "Java", category: "Language", icon: "devicon-java-plain" },
+  { name: "Typescript", category: "Language", icon: "devicon-typescript-plain" },
+  { name: "Bicep", category: "Language", icon: "devicon-azure-plain" },
+  
+  // Technologies
+  { name: "Azure", category: "Cloud", icon: "devicon-azure-plain" },
+  { name: "GCP", category: "Cloud", icon: "devicon-googlecloud-plain" },
+  { name: "MongoDB", category: "Database", icon: "devicon-mongodb-plain" },
+  { name: "MySQL", category: "Database", icon: "devicon-mysql-plain" },
+  { name: "PostgreSQL", category: "Database", icon: "devicon-postgresql-plain" },
+  { name: "Docker", category: "DevOps", icon: "devicon-docker-plain" },
+  { name: "Kubernetes", category: "DevOps", icon: "devicon-kubernetes-plain" },
+  { name: "Git", category: "Version Control", icon: "devicon-git-plain" },
+  { name: "REST APIs", category: "API", icon: "devicon-javascript-plain" },
+  { name: "Jinja", category: "Template", icon: "devicon-python-plain" },
+  { name: "Redis", category: "Cache", icon: "devicon-redis-plain" },
+  { name: "Auth", category: "Security", icon: "devicon-javascript-plain" },
+  
+  // Frameworks
+  { name: "FastAPI", category: "Framework", icon: "devicon-python-plain" },
+  { name: "Django", category: "Framework", icon: "devicon-django-plain" },
+  { name: "Flask", category: "Framework", icon: "devicon-flask-plain" },
+  { name: "Next.js", category: "Framework", icon: "devicon-nextjs-plain" },
+  { name: "Node.js", category: "Framework", icon: "devicon-nodejs-plain" },
+  { name: "React", category: "Framework", icon: "devicon-react-original" },
+  { name: "Express", category: "Framework", icon: "devicon-express-original" },
+  { name: "Pytest", category: "Testing", icon: "devicon-python-plain" }
+];
+
+
 
 const education = {
   college: "Vimal Jyothi Engineering College",
@@ -480,66 +476,41 @@ export default function Home() {
 
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-black">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
           <motion.div
-            className="text-center mb-16"
+            className="text-left mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Technical Skills</h2>
-            <p className="text-xl text-[#a9a9a9] max-w-2xl mx-auto">
+            <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
+              Technical Skills
+            </h2>
+            <p className="text-neutral-300 text-sm md:text-base max-w-sm">
               A comprehensive toolkit for building modern, scalable applications.
             </p>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="flex flex-wrap gap-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {Object.entries(skills).map(([category, skillList], index) => (
+            {skillsData.map((skill, index) => (
               <motion.div
-                key={category}
-                className="bg-[#181818] rounded-xl p-6 border border-white/10 hover:border-white transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                key={skill.name}
+                className="flex items-center space-x-2 bg-neutral-800 text-white px-3 py-2 rounded-full border border-neutral-700 hover:border-white/50 transition-all duration-200 cursor-pointer group"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.03, duration: 0.3 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.3)" }}
+                whileHover={{ y: -2, scale: 1.05 }}
               >
-                <h3 className="text-xl font-semibold text-white mb-4 capitalize">
-                  {category}
-                </h3>
-                                 <div className="space-y-3">
-                   {skillList.map((skill, skillIndex) => (
-                     <motion.div
-                       key={skillIndex}
-                       className="space-y-1"
-                       initial={{ opacity: 0, x: -10 }}
-                       whileInView={{ opacity: 1, x: 0 }}
-                       transition={{ delay: skillIndex * 0.05, duration: 0.3 }}
-                       viewport={{ once: true }}
-                     >
-                                               <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-white">{skill.name}</span>
-                          <span className="text-xs text-[#a9a9a9]">{skill.proficiency}%</span>
-                        </div>
-                        <div className="w-full bg-[#181818] rounded-full h-2">
-                          <motion.div
-                            className="bg-white h-2 rounded-full"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.proficiency}%` }}
-                            transition={{ delay: skillIndex * 0.1, duration: 1, ease: "easeOut" }}
-                            viewport={{ once: true }}
-                          />
-                        </div>
-                     </motion.div>
-                   ))}
-                 </div>
+                <i className={`${skill.icon} text-lg`}></i>
+                <span className="text-xs font-medium">{skill.name}</span>
               </motion.div>
             ))}
           </motion.div>
