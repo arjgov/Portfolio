@@ -141,12 +141,7 @@ const skillsData = [
 
 
 
-const education = {
-  college: "Vimal Jyothi Engineering College",
-  degree: "B.Tech(Hons.) in Computer Science & Engineering",
-  years: "2016 – 2020",
-  cgpa: "8.61"
-};
+
 
 const stats = [
   { label: "Years Experience", value: "4+", icon: Award },
@@ -171,7 +166,6 @@ const staggerContainer = {
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   
   // Scroll-based animation for download button
   const containerRef = useRef(null);
@@ -184,23 +178,7 @@ export default function Home() {
   const iconSize = useTransform(scrollY, [0, 300], [20, 24], { ease: easeOut });
   const iconMargin = useTransform(scrollY, [0, 300], [8, 0], { ease: easeOut });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'experience', 'skills', 'education', 'testimonials', 'contact'];
-      const scrollPosition = window.scrollY + 100;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -229,17 +207,17 @@ export default function Home() {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {['home', 'experience', 'skills', 'education', 'testimonials', 'contact'].map((section) => (
+              {['home', 'experience', 'skills', 'projects', 'about'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`text-sm font-medium transition-colors duration-200 ${
-                    activeSection === section 
-                      ? 'text-white border-b-2 border-white font-semibold' 
-                      : 'text-[#a9a9a9] hover:text-white'
-                  }`}
+                  className="text-sm font-medium transition-colors duration-200 text-[#a9a9a9] hover:text-white"
                 >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  {section === 'home' ? 'Home' : 
+                   section === 'experience' ? 'Experience' :
+                   section === 'skills' ? 'Skills' :
+                   section === 'projects' ? 'Projects' :
+                   'About Me'}
                 </button>
               ))}
               
@@ -264,17 +242,17 @@ export default function Home() {
                 exit={{ opacity: 0, y: -10 }}
               >
                 <div className="px-4 py-4 space-y-3">
-                  {['home', 'experience', 'skills', 'education', 'testimonials', 'contact'].map((section) => (
+                  {['home', 'experience', 'skills', 'projects', 'about'].map((section) => (
                     <button
                       key={section}
                       onClick={() => scrollToSection(section)}
-                      className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        activeSection === section 
-                          ? 'text-white bg-[#181818]' 
-                          : 'text-[#a9a9a9] hover:text-white hover:bg-[#181818]'
-                      }`}
+                      className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors text-[#a9a9a9] hover:text-white hover:bg-[#181818]"
                     >
-                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                      {section === 'home' ? 'Home' : 
+                       section === 'experience' ? 'Experience' :
+                       section === 'skills' ? 'Skills' :
+                       section === 'projects' ? 'Projects' :
+                       'About Me'}
                     </button>
                   ))}
                   
@@ -402,8 +380,9 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <Timeline 
-        data={[
+      <section id="experience">
+        <Timeline 
+          data={[
           {
             title: "Quarks",
             content: (
@@ -472,7 +451,8 @@ export default function Home() {
             )
           }
         ]}
-      />
+        />
+      </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-black">
@@ -517,55 +497,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Education Section */}
-      <section id="education" className="py-20 bg-black">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Projects Section */}
+      <section id="projects" className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
           <motion.div
-            className="text-center mb-16"
+            className="text-left mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Education</h2>
-            <p className="text-xl text-[#a9a9a9] max-w-2xl mx-auto">
-              My academic foundation in computer science and engineering.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="bg-[#181818] rounded-2xl p-8 shadow-lg border border-[rgba(255,255,255,0.1)]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center">
-              <div className="text-4xl mb-4">🎓</div>
-              <h3 className="text-2xl font-bold text-white mb-2">{education.college}</h3>
-              <p className="text-xl text-[#a9a9a9] mb-2">{education.degree}</p>
-              <p className="text-lg text-[#a9a9a9] mb-4">{education.years}</p>
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#181818] text-white font-semibold border border-[rgba(255,255,255,0.1)]">
-                CGPA: {education.cgpa}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-black">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-white mb-4">What People Say</h2>
-            <p className="text-xl text-[#a9a9a9] max-w-2xl mx-auto">
-              Feedback from colleagues and managers about my work and collaboration.
+            <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
+              Featured Projects
+            </h2>
+            <p className="text-neutral-300 text-sm md:text-base max-w-sm">
+              A showcase of my technical expertise and problem-solving abilities.
             </p>
           </motion.div>
 
@@ -578,50 +524,51 @@ export default function Home() {
           >
             {[
               {
-                quote: "Arjun consistently delivers high-quality code and demonstrates excellent problem-solving skills. His attention to detail and commitment to best practices make him an invaluable team member.",
-                author: "Senior Engineering Manager",
-                company: "Quarks"
+                title: "Shop the Look Experience",
+                description: "Built recommendation system with <100ms latency, dynamic product bundles, and V2 Rank APIs.",
+                tech: ["FastAPI", "PostgreSQL", "Redis", "GCP", "Docker", "Kubernetes"],
+                impact: "Improved user engagement by 40%"
               },
               {
-                quote: "Arjun's ability to architect scalable solutions and mentor junior developers has significantly contributed to our team's success. He's a true technical leader.",
-                author: "Tech Lead",
-                company: "Kyro"
+                title: "Forms & Report System",
+                description: "Designed forms experience processing 150K+ reports with 98% test coverage and real-time monitoring.",
+                tech: ["FastAPI", "React.js", "MongoDB", "Azure", "Kubernetes"],
+                impact: "Processed 150K+ reports with 98% test coverage"
               },
               {
-                quote: "Working with Arjun has been a pleasure. His strong backend expertise and cloud knowledge have helped us build robust, production-ready systems.",
-                author: "Product Manager",
-                company: "Cognizant"
+                title: "Microservices Architecture",
+                description: "Developed scalable microservices for project management and real-time event streaming.",
+                tech: ["FastAPI", "MongoDB", "Azure Event Grid", "Docker"],
+                impact: "50,000+ events processed daily"
               }
-            ].map((testimonial, index) => (
+            ].map((project, index) => (
               <motion.div
                 key={index}
-                className="bg-[#181818] rounded-xl p-6 border border-[rgba(255,255,255,0.1)] hover:border-white transition-all duration-300"
+                className="bg-[#181818] rounded-xl p-6 border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer group"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.3)" }}
+                whileHover={{ y: -4, scale: 1.02 }}
               >
-                <div className="mb-4">
-                  <div className="flex text-white mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-white italic">"{testimonial.quote}"</p>
+                <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
+                <p className="text-neutral-300 text-sm mb-4 leading-relaxed">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="text-xs text-white bg-neutral-800 px-3 py-1 rounded-full border border-neutral-700">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-                <div className="border-t border-[rgba(255,255,255,0.1)] pt-4">
-                  <p className="font-semibold text-white">{testimonial.author}</p>
-                  <p className="text-sm text-[#a9a9a9]">{testimonial.company}</p>
-                </div>
+                <div className="text-sm text-green-400 font-medium">{project.impact}</div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-black">
+      {/* About Me Section */}
+      <section id="about" className="py-20 bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -629,9 +576,9 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Let's Connect</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
             <p className="text-xl text-[#a9a9a9] mb-12 max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and innovation.
+              I'm a passionate full-stack engineer who loves building scalable systems and solving complex problems. When I'm not coding, you can find me on Reddit arguing about gaming and PC hardware, or supporting Spurs (my football team).
             </p>
             
             <motion.div
