@@ -37,7 +37,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-black font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-12 md:py-20 px-4 md:px-8 lg:px-10">
+      <div className="max-w-7xl mx-auto py-12 md:py-20 px-4 md:px-8 lg:px-10 pb-32 md:pb-40">
         <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
           Professional Journey
         </h2>
@@ -71,9 +71,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         ))}
         <div
           style={{
-            height: height + "px",
+            height: Math.min(height * 0.8, height - 100) + "px",
           }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-700 to-transparent to-[75%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_70%,transparent_100%)]"
         >
           <motion.div
             style={{

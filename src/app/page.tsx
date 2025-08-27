@@ -457,7 +457,7 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-12 bg-black">
+      <section id="skills" className="py-12 bg-black pb-16 mt-8 md:mt-0">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
           <motion.div
             className="text-left mb-16"
@@ -565,7 +565,7 @@ export default function Home() {
           </div>
         </LampContainer>
       </section> */}
-      <section id="projects" className="py-12 bg-black -mt-29 md:-mt-28">
+      <section id="projects" className="py-12 bg-black -mt-35 md:-mt-35">
         <LampDemo />
       </section>
 
