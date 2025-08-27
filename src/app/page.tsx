@@ -28,6 +28,7 @@ import LetterGlitch from "@/components/LetterGlitch";
 import { Timeline } from "@/components/Timeline";
 import CountUp from "@/components/CountUp";
 import SkillsChromaGrid from "@/components/SkillsChromaGrid";
+import { LampContainer, LampDemo } from "@/components/ui/lamp";
 
 
 const experience = [
@@ -271,7 +272,7 @@ export default function Home() {
           <LetterGlitch
             glitchSpeed={50}
             centerVignette={true}
-            outerVignette={false}
+            outerVignette={true}
             smooth={true}
           />
         </div>
@@ -456,7 +457,7 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-black">
+      <section id="skills" className="py-12 bg-black">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
           <motion.div
             className="text-left mb-16"
@@ -474,7 +475,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="min-h-[400px]"
+            className="min-h-[200px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -491,75 +492,84 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
-          <motion.div
-            className="text-left mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
-              Featured Projects
-            </h2>
-            <p className="text-neutral-300 text-sm md:text-base max-w-sm">
-              A showcase of my technical expertise and problem-solving abilities.
-            </p>
-          </motion.div>
+      {/* Lamp Effect Section with Projects */}
+      {/* <section className="py-12 bg-slate-950">
+        <LampContainer className="min-h-[400px] md:h-[500px]">
+          <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10 w-full">
+            <motion.div
+              className="text-left mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
+                Featured Projects
+              </h2>
+              <p className="text-neutral-300 text-sm md:text-base max-w-sm">
+                A showcase of my technical expertise and problem-solving abilities.
+              </p>
+            </motion.div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                      <motion.div
+            className="grid grid-cols-1 gap-6 lg:gap-8 lg:grid-cols-2 xl:grid-cols-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {[
-              {
-                title: "Shop the Look Experience",
-                description: "Built recommendation system with <100ms latency, dynamic product bundles, and V2 Rank APIs.",
-                tech: ["FastAPI", "PostgreSQL", "Redis", "GCP", "Docker", "Kubernetes"],
-                impact: "Improved user engagement by 40%"
-              },
-              {
-                title: "Forms & Report System",
-                description: "Designed forms experience processing 150K+ reports with 98% test coverage and real-time monitoring.",
-                tech: ["FastAPI", "React.js", "MongoDB", "Azure", "Kubernetes"],
-                impact: "Processed 150K+ reports with 98% test coverage"
-              },
-              {
-                title: "Microservices Architecture",
-                description: "Developed scalable microservices for project management and real-time event streaming.",
-                tech: ["FastAPI", "MongoDB", "Azure Event Grid", "Docker"],
-                impact: "50,000+ events processed daily"
-              }
-            ].map((project, index) => (
-              <motion.div
-                key={index}
-                className="bg-[#181818] rounded-xl p-6 border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4, scale: 1.02 }}
-              >
-                <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
-                <p className="text-neutral-300 text-sm mb-4 leading-relaxed">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="text-xs text-white bg-neutral-800 px-3 py-1 rounded-full border border-neutral-700">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-sm text-green-400 font-medium">{project.impact}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+              {[
+                {
+                  title: "Shop the Look Experience",
+                  description: "Built recommendation system with <100ms latency, dynamic product bundles, and V2 Rank APIs.",
+                  tech: ["FastAPI", "PostgreSQL", "Redis", "GCP", "Docker", "Kubernetes"],
+                  impact: "Improved user engagement by 40%"
+                },
+                {
+                  title: "Forms & Report System",
+                  description: "Designed forms experience processing 150K+ reports with 98% test coverage and real-time monitoring.",
+                  tech: ["FastAPI", "React.js", "MongoDB", "Azure", "Kubernetes"],
+                  impact: "Processed 150K+ reports with 98% test coverage"
+                },
+                {
+                  title: "Microservices Architecture",
+                  description: "Developed scalable microservices for project management and real-time event streaming.",
+                  tech: ["FastAPI", "MongoDB", "Azure Event Grid", "Docker"],
+                  impact: "50,000+ events processed daily"
+                }
+              ].map((project, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-[#181818]/90 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/30 hover:border-white/50 transition-all duration-300 cursor-pointer group shadow-xl hover:shadow-2xl w-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                >
+                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-neutral-300 text-sm mb-4 leading-relaxed">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech) => (
+                      <span key={tech} className="text-xs text-white bg-neutral-800/90 backdrop-blur-sm px-2 md:px-3 py-1 rounded-full border border-neutral-700 hover:border-cyan-400 transition-colors duration-300">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-sm text-cyan-400 font-medium">{project.impact}</div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </LampContainer>
+      </section> */}
+      <section id="projects" className="py-12 bg-black -mt-29 md:-mt-28">
+        <LampDemo />
       </section>
+
+      
 
       {/* About Me Section */}
       <section id="about" className="py-20 bg-black">
@@ -634,7 +644,7 @@ export default function Home() {
 
       {/* Floating Action Button */}
       <motion.div
-        className="fixed bottom-8 right-8 z-40"
+        className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-40"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
