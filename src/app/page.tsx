@@ -601,20 +601,21 @@ export default function Home() {
 
       {/* About Me Section */}
       <section id="about" className="py-20 bg-black">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
           <motion.div
+            className="text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-            <p className="text-xl text-[#a9a9a9] mb-12 max-w-2xl mx-auto">
-              I'm a passionate full-stack engineer who loves building scalable systems and solving complex problems. When I'm not coding, you can find me on Reddit arguing about gaming and PC hardware, or supporting Spurs (my football team).
+            <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">About Me</h2>
+            <p className="text-neutral-300 text-sm md:text-base max-w-2xl mb-12">
+              As a full-stack engineer, I'm driven by a love for solving complex puzzles. Whether it's architecting a scalable backend, figuring out why my new PC build is thermal throttling, or mapping out the 1,457 ways Spurs can finally win a trophy, it's all just debugging to me. When the IDE is closed, my keyboard is still hot—either from a late-night gaming session or from crafting the perfect, logic-based argument to dismantle a rival fan's opinion online. My code is clean, my frame rates are high, and my trash talk is merciless.
             </p>
             
             <motion.div
-              className="flex flex-wrap justify-center gap-6"
+              className="flex flex-wrap gap-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -634,7 +635,7 @@ export default function Home() {
                 href="https://linkedin.com/in/arjungovindan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-colors shadow-lg"
+                className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -652,6 +653,18 @@ export default function Home() {
               >
                 <Github className="w-5 h-5" />
                 <span>GitHub</span>
+              </motion.a>
+              
+              <motion.a
+                href="https://buymeacoffee.com/arjungovindan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="text-xl">☕</span>
+                <span>Buy Me a Coffee</span>
               </motion.a>
             </motion.div>
 
