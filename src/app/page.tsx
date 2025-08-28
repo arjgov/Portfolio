@@ -29,6 +29,7 @@ import { Timeline } from "@/components/Timeline";
 import CountUp from "@/components/CountUp";
 import SkillsChromaGrid from "@/components/SkillsChromaGrid";
 import { MainMenusGradientCard } from "@/components/MainMenusGradientCard";
+import LottieAnimation from "@/components/LottieAnimation";
 import { LampContainer, LampDemo } from "@/components/ui/lamp";
 
 
@@ -529,11 +530,13 @@ export default function Home() {
                 githubLink="https://github.com/arjgov/power-picker"
                 liveLink="https://power-picker.vercel.app"
               >
-                <div className="flex items-center justify-center h-full">
-                  <img
-                    src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=200&fit=crop"
-                    alt="Power Picker - PSU Selection Tool"
-                    className="w-full h-full object-cover rounded-lg"
+                <div className="flex items-center justify-center h-full w-full">
+                  <LottieAnimation
+                    src="https://lottie.host/3757635c-fb73-4873-9d5c-aede48c9e577/8WcbWUJ5Wu.lottie"
+                    className="w-full h-full"
+                    loop={true}
+                    autoplay={true}
+                    hoverToPlay={false}
                   />
                 </div>
               </MainMenusGradientCard>
@@ -546,18 +549,20 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <MainMenusGradientCard
-                title="AI Chat Application"
-                description="Real-time chat application with AI-powered responses, natural language processing, and sentiment analysis using OpenAI API and WebSocket connections."
+                title="OmniScribe AI"
+                description="The content co-pilot for e-commerce. Simply upload your product photos and title, and our platform automatically generates everything you need to sell online."
                 withArrow={true}
                 circleSize={300}
-                githubLink="https://github.com/arjgov/ai-chat-app"
-                liveLink="https://ai-chat-app.vercel.app"
+                githubLink="https://github.com/arjgov/omniscribe-ai"
+                liveLink="https://omniscribe-ai.vercel.app"
               >
-                <div className="flex items-center justify-center h-full">
-                  <img
-                    src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop"
-                    alt="AI Chat Application"
-                    className="w-full h-full object-cover rounded-lg"
+                <div className="flex items-center justify-center h-full w-full">
+                  <LottieAnimation
+                    src="https://lottie.host/551d9f86-96ba-4335-81eb-f842b28e3705/yi57Ov8czJ.lottie"
+                    className="w-full h-full"
+                    loop={true}
+                    autoplay={true}
+                    hoverToPlay={false}
                   />
                 </div>
               </MainMenusGradientCard>
@@ -570,18 +575,20 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <MainMenusGradientCard
-                title="Data Analytics Dashboard"
-                description="Interactive dashboard for business intelligence with real-time data visualization, custom reports, and automated insights using D3.js and Python."
+                title="StudyBuddy"
+                description="Find a study partner for anything you want to learn. Connect with like-minded learners, create study groups, track progress together, and achieve your learning goals through collaborative studying."
                 withArrow={true}
                 circleSize={300}
-                githubLink="https://github.com/arjgov/analytics-dashboard"
-                liveLink="https://analytics-dashboard.vercel.app"
+                githubLink="https://github.com/arjgov/studybuddy"
+                liveLink="https://studybuddy.vercel.app"
               >
-                <div className="flex items-center justify-center h-full">
-                  <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop"
-                    alt="Data Analytics Dashboard"
-                    className="w-full h-full object-cover rounded-lg"
+                <div className="flex items-center justify-center h-full w-full">
+                  <LottieAnimation
+                    src="https://lottie.host/8974bdfd-a60c-467e-805b-4ddf914262b3/8BSOjB4Qln.lottie"
+                    className="w-full h-full"
+                    loop={true}
+                    autoplay={true}
+                    hoverToPlay={false}
                   />
                 </div>
               </MainMenusGradientCard>

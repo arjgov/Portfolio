@@ -27,7 +27,7 @@ export const MainMenusGradientCard = ({
 
   return (
     <div
-      className="group relative transform-gpu overflow-hidden rounded-lg bg-white/10 p-2 transition-transform hover:scale-[1.01] active:scale-90 h-[520px] flex flex-col"
+      className="group relative transform-gpu overflow-hidden rounded-lg bg-white/10 p-2 h-[520px] flex flex-col"
       ref={parentRef}
     >
       {withArrow && (
