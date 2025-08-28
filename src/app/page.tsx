@@ -28,6 +28,7 @@ import LetterGlitch from "@/components/LetterGlitch";
 import { Timeline } from "@/components/Timeline";
 import CountUp from "@/components/CountUp";
 import SkillsChromaGrid from "@/components/SkillsChromaGrid";
+import { MainMenusGradientCard } from "@/components/MainMenusGradientCard";
 import { LampContainer, LampDemo } from "@/components/ui/lamp";
 
 
@@ -132,12 +133,12 @@ const skillsData = [
   
   // Frameworks
   { name: "FastAPI", category: "Framework", icon: "devicon-python-plain", borderColor: "#059669", gradient: "linear-gradient(135deg, #05966920, #000)", iconColor: "#059669" },
-  { name: "Django", category: "Framework", icon: "devicon-django-plain", borderColor: "#092E20", gradient: "linear-gradient(135deg, #092E2020, #000)", iconColor: "#092E20" },
-  { name: "Flask", category: "Framework", icon: "devicon-flask-plain", borderColor: "#000000", gradient: "linear-gradient(135deg, #00000020, #000)", iconColor: "#FFFFFF" },
-  { name: "Next.js", category: "Framework", icon: "devicon-nextjs-plain", borderColor: "#000000", gradient: "linear-gradient(135deg, #00000020, #000)", iconColor: "#FFFFFF" },
+  { name: "Django", category: "Framework", icon: "devicon-django-plain", borderColor: "#FFFFFF", gradient: "linear-gradient(135deg, #FFFFFF20, #000)", iconColor: "#FFFFFF" },
+  { name: "Flask", category: "Framework", icon: "devicon-flask-plain", borderColor: "#FFFFFF", gradient: "linear-gradient(135deg, #FFFFFF20, #000)", iconColor: "#FFFFFF" },
+  { name: "Next.js", category: "Framework", icon: "devicon-nextjs-plain", borderColor: "#FFFFFF", gradient: "linear-gradient(135deg, #FFFFFF20, #000)", iconColor: "#FFFFFF" },
   { name: "Node.js", category: "Framework", icon: "devicon-nodejs-plain", borderColor: "#339933", gradient: "linear-gradient(135deg, #33993320, #000)", iconColor: "#339933" },
   { name: "React", category: "Framework", icon: "devicon-react-original", borderColor: "#61DAFB", gradient: "linear-gradient(135deg, #61DAFB20, #000)", iconColor: "#61DAFB" },
-  { name: "Express", category: "Framework", icon: "devicon-express-original", borderColor: "#000000", gradient: "linear-gradient(135deg, #00000020, #000)", iconColor: "#FFFFFF" },
+  { name: "Express", category: "Framework", icon: "devicon-express-original", borderColor: "#FFFFFF", gradient: "linear-gradient(135deg, #FFFFFF20, #000)", iconColor: "#FFFFFF" },
   { name: "Pytest", category: "Testing", icon: "devicon-python-plain", borderColor: "#0A9EDC", gradient: "linear-gradient(135deg, #0A9EDC20, #000)", iconColor: "#0A9EDC" }
 ];
 
@@ -467,7 +468,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
-              Technical Skills
+              Skills
             </h2>
             <p className="text-neutral-300 text-sm md:text-base max-w-sm">
               A comprehensive toolkit for building modern, scalable applications.
@@ -483,18 +484,110 @@ export default function Home() {
           >
             <SkillsChromaGrid 
               skills={skillsData}
-              radius={250}
-              damping={0.4}
-              fadeOut={0.8}
-              ease="power3.out"
             />
           </motion.div>
         </div>
       </section>
 
-      {/* Lamp Effect Section with Projects */}
-      <section id="projects" className="py-12 bg-black -mt-35 md:-mt-35">
-        <LampDemo />
+
+      {/* Featured Projects Section */}
+      <section id="projects" className="py-12 bg-black pb-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
+          <motion.div
+            className="text-left mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
+              Featured Projects
+            </h2>
+            <p className="text-neutral-300 text-sm md:text-base max-w-sm">
+              Some of my recent work that showcases my skills and passion for building great software.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <MainMenusGradientCard
+                title="Power Picker"
+                description="Pick your power, perfectly. The perfect tool for picking your next PSU. Compare official tier ratings, analyze price trends, and get simple recommendations to power your PC with confidence."
+                withArrow={true}
+                circleSize={300}
+                githubLink="https://github.com/arjgov/power-picker"
+                liveLink="https://power-picker.vercel.app"
+              >
+                <div className="flex items-center justify-center h-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=200&fit=crop"
+                    alt="Power Picker - PSU Selection Tool"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+              </MainMenusGradientCard>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <MainMenusGradientCard
+                title="AI Chat Application"
+                description="Real-time chat application with AI-powered responses, natural language processing, and sentiment analysis using OpenAI API and WebSocket connections."
+                withArrow={true}
+                circleSize={300}
+                githubLink="https://github.com/arjgov/ai-chat-app"
+                liveLink="https://ai-chat-app.vercel.app"
+              >
+                <div className="flex items-center justify-center h-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop"
+                    alt="AI Chat Application"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+              </MainMenusGradientCard>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <MainMenusGradientCard
+                title="Data Analytics Dashboard"
+                description="Interactive dashboard for business intelligence with real-time data visualization, custom reports, and automated insights using D3.js and Python."
+                withArrow={true}
+                circleSize={300}
+                githubLink="https://github.com/arjgov/analytics-dashboard"
+                liveLink="https://analytics-dashboard.vercel.app"
+              >
+                <div className="flex items-center justify-center h-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop"
+                    alt="Data Analytics Dashboard"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+              </MainMenusGradientCard>
+            </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       
