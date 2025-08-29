@@ -275,7 +275,7 @@ export default function Home() {
           <LetterGlitch
             glitchSpeed={50}
             centerVignette={true}
-            outerVignette={true}
+            outerVignette={false}
             smooth={true}
           />
         </div>
@@ -627,7 +627,8 @@ export default function Home() {
                  avatarUrl="/profile_pic.jpeg"
                  showUserInfo={false}
                  enableTilt={true}
-                 enableMobileTilt={false}
+                 enableMobileTilt={true}
+                 mobileTiltSensitivity={3}
                  onContactClick={() => {
                    const element = document.getElementById('about');
                    if (element) {
@@ -645,13 +646,13 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">About Me</h2>
+              <h2 className="text-lg md:text-4xl mb-12 text-white max-w-4xl">About Me</h2>
               <p className="text-neutral-300 text-sm md:text-base max-w-2xl mb-12">
-                As a full-stack engineer, I'm driven by a love for solving complex puzzles. Whether it's architecting a scalable backend, figuring out why my new PC build is thermal throttling, or mapping out the 1,457 ways Spurs can finally win a trophy, it's all just debugging to me. When the IDE is closed, my keyboard is still hot—either from a late-night gaming session or from crafting the perfect, logic-based argument to dismantle a rival fan's opinion online. My code is clean, my frame rates are high, and my trash talk is merciless.
+               Full-stack engineer. I love building two things: clean, scalable software and a Steam library I'll never have time to finish. I'm also a lifelong Spurs fan, which has taught me more about resilience and debugging hopeless situations than any tech job ever could.
               </p>
               
               <motion.div
-                className="flex flex-wrap gap-6"
+                className="flex flex-wrap gap-6 mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
