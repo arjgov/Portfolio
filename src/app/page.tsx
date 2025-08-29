@@ -31,6 +31,7 @@ import SkillsChromaGrid from "@/components/SkillsChromaGrid";
 import { MainMenusGradientCard } from "@/components/MainMenusGradientCard";
 import LottieAnimation from "@/components/LottieAnimation";
 import { LampContainer, LampDemo } from "@/components/ui/lamp";
+import ProfileCard from "@/components/ProfileCard";
 
 
 const experience = [
@@ -603,82 +604,120 @@ export default function Home() {
       <section id="about" className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
           <motion.div
-            className="text-left"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">About Me</h2>
-            <p className="text-neutral-300 text-sm md:text-base max-w-2xl mb-12">
-              As a full-stack engineer, I'm driven by a love for solving complex puzzles. Whether it's architecting a scalable backend, figuring out why my new PC build is thermal throttling, or mapping out the 1,457 ways Spurs can finally win a trophy, it's all just debugging to me. When the IDE is closed, my keyboard is still hot—either from a late-night gaming session or from crafting the perfect, logic-based argument to dismantle a rival fan's opinion online. My code is clean, my frame rates are high, and my trash talk is merciless.
-            </p>
-            
+            {/* Mobile First Column - Profile Card, Desktop Second Column */}
             <motion.div
-              className="flex flex-wrap gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              className="order-1 lg:order-2 flex justify-center lg:justify-end"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <motion.a
-                href="mailto:arjungovindan98@gmail.com"
-                className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Mail className="w-5 h-5" />
-                <span>Email Me</span>
-              </motion.a>
-              
-              <motion.a
-                href="https://linkedin.com/in/arjungovindan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Linkedin className="w-5 h-5" />
-                <span>LinkedIn</span>
-              </motion.a>
-              
-              <motion.a
-                href="https://github.com/arjgov"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Github className="w-5 h-5" />
-                <span>GitHub</span>
-              </motion.a>
-              
-              <motion.a
-                href="https://buymeacoffee.com/arjungovindan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-xl">☕</span>
-                <span>Buy Me a Coffee</span>
-              </motion.a>
+                             <ProfileCard
+                 name="Arjun"
+                 title=""
+                 handle=""
+                 status=""
+                 contactText=""
+                 avatarUrl="/profile_pic.jpeg"
+                 showUserInfo={false}
+                 enableTilt={true}
+                 enableMobileTilt={false}
+                 onContactClick={() => {
+                   const element = document.getElementById('about');
+                   if (element) {
+                     element.scrollIntoView({ behavior: 'smooth' });
+                   }
+                 }}
+               />
             </motion.div>
 
+            {/* Mobile Second Column - About Me Content, Desktop First Column */}
             <motion.div
-              className="mt-12 pt-8 border-t border-[rgba(255,255,255,0.1)]"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+              className="order-2 lg:order-1 text-left"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <p className="text-[#a9a9a9] text-sm">
-                Available for full-time opportunities and interesting freelance projects
+              <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">About Me</h2>
+              <p className="text-neutral-300 text-sm md:text-base max-w-2xl mb-12">
+                As a full-stack engineer, I'm driven by a love for solving complex puzzles. Whether it's architecting a scalable backend, figuring out why my new PC build is thermal throttling, or mapping out the 1,457 ways Spurs can finally win a trophy, it's all just debugging to me. When the IDE is closed, my keyboard is still hot—either from a late-night gaming session or from crafting the perfect, logic-based argument to dismantle a rival fan's opinion online. My code is clean, my frame rates are high, and my trash talk is merciless.
               </p>
+              
+              <motion.div
+                className="flex flex-wrap gap-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <motion.a
+                  href="mailto:arjungovindan98@gmail.com"
+                  className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Mail className="w-5 h-5" />
+                  <span>Email Me</span>
+                </motion.a>
+                
+                <motion.a
+                  href="https://linkedin.com/in/arjungovindan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Linkedin className="w-5 h-5" />
+                  <span>LinkedIn</span>
+                </motion.a>
+                
+                <motion.a
+                  href="https://github.com/arjgov"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Github className="w-5 h-5" />
+                  <span>GitHub</span>
+                </motion.a>
+                
+                <motion.a
+                  href="https://buymeacoffee.com/arjungovindan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="text-xl">☕</span>
+                  <span>Buy Me a Coffee</span>
+                </motion.a>
+              </motion.div>
+
+              <motion.div
+                className="mt-12 pt-8 border-t border-[rgba(255,255,255,0.1)]"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-[#a9a9a9] text-sm">
+                  Available for full-time opportunities and interesting freelance projects
+                </p>
+              </motion.div>
             </motion.div>
+
+            
           </motion.div>
         </div>
       </section>
