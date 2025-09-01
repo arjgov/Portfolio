@@ -5,26 +5,18 @@ import { motion, useScroll, useTransform, easeOut } from "motion/react";
 import { 
   Github, 
   Linkedin, 
-  Twitter, 
   Mail, 
-  Download, 
-  ExternalLink,
-  Code,
-  Database,
-  Server,
-  Globe,
-  ArrowRight,
   Menu,
   X,
   ChevronDown,
-  Star,
   Award,
   Users,
   Zap,
   FileText,
-  Calendar
+  Calendar,
+  Code
 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import LetterGlitch from "@/components/LetterGlitch";
 import { Timeline } from "@/components/Timeline";
 import CountUp from "@/components/CountUp";
@@ -178,7 +170,6 @@ export default function Home() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   
   // Scroll-based animation for download button
-  const containerRef = useRef(null);
   const { scrollY } = useScroll();
   const buttonWidth = useTransform(scrollY, [0, 300], [160, 64], { ease: easeOut });
   const buttonHeight = useTransform(scrollY, [0, 300], [48, 64], { ease: easeOut });
@@ -296,7 +287,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Hey, I'm Arjun.
+            Hey, I&apos;m Arjun.
           </motion.h1>
           
           {/* Subtitle with delay */}
@@ -306,7 +297,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            A full-stack engineer who makes sure "it works on my machine" actually works on your machine.
+            A full-stack engineer who makes sure &ldquo;it works on my machine&rdquo; actually works on your machine.
           </motion.p>
           
           {/* CTA Links with staggered animation */}
@@ -664,7 +655,7 @@ export default function Home() {
             >
               <h2 className="text-2xl md:text-4xl mb-12 text-white max-w-4xl">About Me</h2>
               <p className="text-neutral-300 text-sm md:text-base max-w-2xl mb-12">
-               Full-stack engineer. I love building two things: clean, scalable software and a Steam library I'll never have time to finish. I'm also a lifelong Spurs fan, which has taught me more about resilience and debugging hopeless situations than any tech job ever could.
+               Full-stack engineer. I love building two things: clean, scalable software and a Steam library I&apos;ll never have time to finish. I&apos;m also a lifelong Spurs fan, which has taught me more about resilience and debugging hopeless situations than any tech job ever could.
               </p>
               
               <motion.div

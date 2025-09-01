@@ -5,7 +5,10 @@ import { useEffect } from "react";
 
 declare global {
   interface Window {
-    Calendly: any;
+    Calendly: {
+      initBadgeWidget?: (config: unknown) => void;
+      initInlineWidget?: (config: unknown) => void;
+    };
   }
 }
 
@@ -59,7 +62,7 @@ export const BookingSection = () => {
           className="text-left mb-16"
         >
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">
-            Let's Build Something Amazing Together
+            Let&apos;s Build Something Amazing Together
           </h2>
           <p className="text-sm md:text-base text-neutral-300 max-w-3xl mb-8">
             Ready to discuss your project? Schedule a kickoff meeting to explore how we can bring your ideas to life.

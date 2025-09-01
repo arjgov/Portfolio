@@ -32,12 +32,12 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
-  // Pre-calculate fill progress for each circle
-  const circleFillProgresses = data.map((_, index) => {
-    const totalItems = data.length;
-    const itemProgress = (index + 1) / totalItems;
-    return useTransform(scrollYProgress, [0, itemProgress], [0, 1]);
-  });
+  // Create individual transform values for each circle
+  const circle1Progress = useTransform(scrollYProgress, [0, 1/3], [0, 1]);
+  const circle2Progress = useTransform(scrollYProgress, [0, 2/3], [0, 1]);
+  const circle3Progress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  
+  const circleFillProgresses = [circle1Progress, circle2Progress, circle3Progress];
 
   return (
     <div

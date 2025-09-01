@@ -7,12 +7,12 @@ const LetterGlitch = ({
   outerVignette = true,
   smooth = true,
 }) => {
-  const canvasRef = useRef(null);
-  const animationRef = useRef(null);
-  const letters = useRef([]);
-  const grid = useRef({ columns: 0, rows: 0 });
-  const context = useRef(null);
-  const lastGlitchTime = useRef(Date.now());
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const letters = useRef<Array<{ char: string; color: string; targetColor: string; colorProgress: number }>>([]);
+  const grid = useRef<{ columns: number; rows: number }>({ columns: 0, rows: 0 });
+  const context = useRef<CanvasRenderingContext2D | null>(null);
+  const lastGlitchTime = useRef<number>(Date.now());
 
   const fontSize = 16;
   const charWidth = 10;
@@ -34,7 +34,7 @@ const LetterGlitch = ({
     return glitchColors[Math.floor(Math.random() * glitchColors.length)];
   };
 
-  const hexToRgb = (hex) => {
+  const hexToRgb = (hex: string) => {
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, (m, r, g, b) => {
       return r + r + g + g + b + b;
@@ -48,7 +48,7 @@ const LetterGlitch = ({
     } : null;
   };
 
-  const interpolateColor = (start, end, factor) => {
+  const interpolateColor = (start: { r: number; g: number; b: number }, end: { r: number; g: number; b: number }, factor: number) => {
     const result = {
       r: Math.round(start.r + (end.r - start.r) * factor),
       g: Math.round(start.g + (end.g - start.g) * factor),
@@ -57,13 +57,13 @@ const LetterGlitch = ({
     return `rgb(${result.r}, ${result.g}, ${result.b})`;
   };
 
-  const calculateGrid = (width, height) => {
+  const calculateGrid = (width: number, height: number) => {
     const columns = Math.ceil(width / charWidth);
     const rows = Math.ceil(height / charHeight);
     return { columns, rows };
   };
 
-  const initializeLetters = (columns, rows) => {
+  const initializeLetters = (columns: number, rows: number) => {
     grid.current = { columns, rows };
     const totalLetters = columns * rows;
     letters.current = Array.from({ length: totalLetters }, () => ({
@@ -100,7 +100,7 @@ const LetterGlitch = ({
   };
 
   const drawLetters = () => {
-    if (!context.current || letters.current.length === 0) return;
+    if (!context.current || letters.current.length === 0 || !canvasRef.current) return;
     const ctx = context.current;
     const { width, height } = canvasRef.current.getBoundingClientRect();
     ctx.clearRect(0, 0, width, height);
@@ -189,12 +189,14 @@ const LetterGlitch = ({
     resizeCanvas();
     animate();
 
-    let resizeTimeout;
+    let resizeTimeout: NodeJS.Timeout | undefined;
 
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        cancelAnimationFrame(animationRef.current);
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
         resizeCanvas();
         animate();
       }, 100);
@@ -203,7 +205,9 @@ const LetterGlitch = ({
     window.addEventListener('resize', handleResize);
 
     return () => {
-      cancelAnimationFrame(animationRef.current);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
       window.removeEventListener('resize', handleResize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
