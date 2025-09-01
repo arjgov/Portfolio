@@ -32,6 +32,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
+  // Pre-calculate fill progress for each circle
+  const circleFillProgresses = data.map((_, index) => {
+    const totalItems = data.length;
+    const itemProgress = (index + 1) / totalItems;
+    return useTransform(scrollYProgress, [0, itemProgress], [0, 1]);
+  });
+
   return (
     <div
       className="w-full bg-black font-sans md:px-10"
@@ -47,27 +54,38 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-12 md:pb-20">
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex justify-start pt-6 md:pt-40 md:gap-10"
-          >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-8 absolute left-4 md:left-4 w-8 rounded-full border-3 border-white bg-black flex items-center justify-center">
+        {data.map((item, index) => {
+          const fillProgress = circleFillProgresses[index];
+          
+          return (
+            <div
+              key={index}
+              className="flex justify-start pt-6 md:pt-40 md:gap-10"
+            >
+              <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+                <motion.div className="h-8 absolute left-4 md:left-4 w-8 rounded-full border-3 border-white bg-black flex items-center justify-center overflow-hidden">
+                  <motion.div
+                    className="absolute inset-0 rounded-full bg-white"
+                    style={{
+                      scale: fillProgress,
+                    }}
+                    transition={{ type: "spring", stiffness: 100, damping: 30 }}
+                  />
+                </motion.div>
+                <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-400">
+                  {item.title}
+                </h3>
               </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-400">
-                {item.title}
-              </h3>
-            </div>
 
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-400">
-                {item.title}
-              </h3>
-              {item.content}
+              <div className="relative pl-20 pr-4 md:pl-4 w-full">
+                <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-400">
+                  {item.title}
+                </h3>
+                {item.content}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <div
           style={{
             height: Math.min(height * 0.8, height - 100) + "px",
