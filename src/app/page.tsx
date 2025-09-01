@@ -17,7 +17,7 @@ import {
   Code
 } from "lucide-react";
 import { useState } from "react";
-import LetterGlitch from "@/components/LetterGlitch";
+import Prism from "@/components/Prism";
 import { Timeline } from "@/components/Timeline";
 import CountUp from "@/components/CountUp";
 import SkillsChromaGrid from "@/components/SkillsChromaGrid";
@@ -268,13 +268,18 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* LetterGlitch Background */}
+        {/* Prism Background */}
         <div className="absolute inset-0 z-0">
-          <LetterGlitch
-            glitchSpeed={50}
-            centerVignette={true}
-            outerVignette={false}
-            smooth={true}
+          <Prism
+            animationType="hover"
+            timeScale={0.5}
+            height={3.5}
+            baseWidth={5.5}
+            scale={3.6}
+            hueShift={0}
+            colorFrequency={1}
+            noise={0}
+            glow={1}
           />
         </div>
         
