@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform, easeOut } from "framer-motion";
+import { motion, useScroll, useTransform, easeOut } from "motion/react";
 import { 
   Github, 
   Linkedin, 
@@ -21,7 +21,8 @@ import {
   Award,
   Users,
   Zap,
-  FileText
+  FileText,
+  Calendar
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import LetterGlitch from "@/components/LetterGlitch";
@@ -32,6 +33,9 @@ import { MainMenusGradientCard } from "@/components/MainMenusGradientCard";
 import LottieAnimation from "@/components/LottieAnimation";
 import { LampContainer, LampDemo } from "@/components/ui/lamp";
 import ProfileCard from "@/components/ProfileCard";
+import { BookingSection } from "@/components/BookingSection";
+import { BookingModal } from "@/components/BookingModal";
+import { BookingButton } from "@/components/BookingButton";
 
 
 const experience = [
@@ -171,6 +175,7 @@ const staggerContainer = {
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   
   // Scroll-based animation for download button
   const containerRef = useRef(null);
@@ -197,7 +202,7 @@ export default function Home() {
     <div className="min-h-screen bg-black">
       {/* Navigation Header */}
       <motion.header 
-        className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/10 shadow-lg"
+        className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md"
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -212,7 +217,7 @@ export default function Home() {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {['home', 'experience', 'skills', 'projects', 'about'].map((section) => (
+              {['home', 'experience', 'projects', 'skills', 'booking', 'about'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -220,8 +225,9 @@ export default function Home() {
                 >
                   {section === 'home' ? 'Home' : 
                    section === 'experience' ? 'Experience' :
-                   section === 'skills' ? 'Skills' :
                    section === 'projects' ? 'Projects' :
+                   section === 'skills' ? 'Skills' :
+                   section === 'booking' ? 'Book Meeting' :
                    'About Me'}
                 </button>
               ))}
@@ -241,13 +247,13 @@ export default function Home() {
                       {/* Mobile Navigation */}
             {isMenuOpen && (
               <motion.div
-                className="md:hidden absolute top-full left-0 right-0 bg-black shadow-lg border-b border-white/10"
+                className="md:hidden absolute top-full left-0 right-0 bg-black shadow-lg"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
               >
                 <div className="px-4 py-4 space-y-3">
-                  {['home', 'experience', 'skills', 'projects', 'about'].map((section) => (
+                  {['home', 'experience', 'projects', 'skills', 'booking', 'about'].map((section) => (
                     <button
                       key={section}
                       onClick={() => scrollToSection(section)}
@@ -255,8 +261,9 @@ export default function Home() {
                     >
                       {section === 'home' ? 'Home' : 
                        section === 'experience' ? 'Experience' :
-                       section === 'skills' ? 'Skills' :
                        section === 'projects' ? 'Projects' :
+                       section === 'skills' ? 'Skills' :
+                       section === 'booking' ? 'Book Meeting' :
                        'About Me'}
                     </button>
                   ))}
@@ -304,26 +311,35 @@ export default function Home() {
           
           {/* CTA Links with staggered animation */}
           <motion.div 
-            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           >
+            <motion.button
+              onClick={() => setIsBookingModalOpen(true)}
+              className="flex items-center space-x-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Calendar className="w-5 h-5" />
+              <span>Book a Meeting</span>
+            </motion.button>
             <motion.a
               href="#experience"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base relative group"
+              className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10">View My Work →</span>
+              <span>View My Work →</span>
             </motion.a>
             <motion.a
-              href="#contact"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base relative group"
+              href="#about"
+              className="flex items-center space-x-2 px-8 py-4 bg-[#181818] text-white font-semibold rounded-full hover:bg-white hover:text-black transition-colors shadow-lg border border-[rgba(255,255,255,0.1)]"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10">Get In Touch →</span>
+              <span>Get In Touch →</span>
             </motion.a>
           </motion.div>
         </div>
@@ -346,7 +362,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-black border-b border-white/10">
+      <section className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-8"
@@ -459,41 +475,8 @@ export default function Home() {
         />
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-12 bg-black pb-16 mt-8 md:mt-30">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
-          <motion.div
-            className="text-left mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
-              Skills
-            </h2>
-            <p className="text-neutral-300 text-sm md:text-base max-w-sm">
-              A comprehensive toolkit for building modern, scalable applications.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="min-h-[200px]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <SkillsChromaGrid 
-              skills={skillsData}
-            />
-          </motion.div>
-        </div>
-      </section>
-
-
       {/* Featured Projects Section */}
-      <section id="projects" className="py-12 bg-black pb-16">
+      <section id="projects" className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
           <motion.div
             className="text-left mb-16"
@@ -502,7 +485,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-lg md:text-4xl mb-4 text-white max-w-4xl">
+            <h2 className="text-2xl md:text-4xl mb-4 text-white max-w-4xl">
               Featured Projects
             </h2>
             <p className="text-neutral-300 text-sm md:text-base max-w-sm">
@@ -598,7 +581,40 @@ export default function Home() {
         </div>
       </section>
 
-      
+      {/* Skills Section */}
+      <section id="skills" className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
+          <motion.div
+            className="text-left mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl md:text-4xl mb-4 text-white max-w-4xl">
+              Skills
+            </h2>
+            <p className="text-neutral-300 text-sm md:text-base max-w-sm">
+              A comprehensive toolkit for building modern, scalable applications.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="min-h-[200px]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <SkillsChromaGrid 
+              skills={skillsData}
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Booking Section */}
+      <BookingSection />
 
       {/* About Me Section */}
       <section id="about" className="py-20 bg-black">
@@ -646,13 +662,13 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-lg md:text-4xl mb-12 text-white max-w-4xl">About Me</h2>
+              <h2 className="text-2xl md:text-4xl mb-12 text-white max-w-4xl">About Me</h2>
               <p className="text-neutral-300 text-sm md:text-base max-w-2xl mb-12">
                Full-stack engineer. I love building two things: clean, scalable software and a Steam library I'll never have time to finish. I'm also a lifelong Spurs fan, which has taught me more about resilience and debugging hopeless situations than any tech job ever could.
               </p>
               
               <motion.div
-                className="flex flex-wrap gap-6 mb-12"
+                className="flex flex-wrap gap-6 mb-16"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
@@ -692,6 +708,7 @@ export default function Home() {
                   <span>GitHub</span>
                 </motion.a>
                 
+                {/* TODO: Decide whether to add Buy Me a Coffee link later
                 <motion.a
                   href="https://buymeacoffee.com/arjungovindan"
                   target="_blank"
@@ -703,10 +720,11 @@ export default function Home() {
                   <span className="text-xl">☕</span>
                   <span>Buy Me a Coffee</span>
                 </motion.a>
+                */}
               </motion.div>
 
               <motion.div
-                className="mt-12 pt-8 border-t border-[rgba(255,255,255,0.1)]"
+                className="mt-16 pt-8 border-t border-[rgba(255,255,255,0.1)]"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
@@ -763,6 +781,12 @@ export default function Home() {
           </motion.span>
         </motion.a>
       </motion.div>
+
+      {/* Booking Modal */}
+      <BookingModal 
+        isOpen={isBookingModalOpen} 
+        onClose={() => setIsBookingModalOpen(false)} 
+      />
 
       {/* Footer */}
       <footer className="py-8 bg-black text-center">
