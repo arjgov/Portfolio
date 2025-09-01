@@ -27,11 +27,11 @@ export const MainMenusGradientCard = ({
 
   return (
     <div
-      className="group relative transform-gpu overflow-hidden rounded-lg bg-white/10 p-2 h-[520px] flex flex-col"
-      ref={parentRef}
+      className="group relative transform-gpu overflow-hidden rounded-lg bg-black/80 border-2 border-white/20 p-2 h-[520px] flex flex-col"
+      ref={parentRef as React.RefObject<HTMLDivElement>}
     >
       {withArrow && (
-        <ArrowUpRightIcon className="absolute right-2 top-2 z-10 size-5 translate-y-4 text-neutral-700 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 dark:text-neutral-300 " />
+        <ArrowUpRightIcon className="absolute right-2 top-2 z-10 size-5 translate-y-4 text-white/70 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100" />
       )}
       <div
         className={cn(
@@ -52,11 +52,11 @@ export const MainMenusGradientCard = ({
             "linear-gradient(135deg, #ffffff, #f3f4f6, #e5e7eb, #d1d5db)",
         }}
       />
-      <div className="absolute inset-px rounded-lg bg-neutral-100/80 dark:bg-neutral-900/80" />
+      <div className="absolute inset-px rounded-lg bg-black/50" />
       {children && (
         <div
           className={cn(
-            "relative place-content-center overflow-hidden rounded-md border-white bg-white/70 dark:border-neutral-950 dark:bg-black/50 h-48 flex-shrink-0",
+            "relative place-content-center overflow-hidden rounded-md border-white/20 bg-black/30 h-48 flex-shrink-0",
             className,
           )}
         >
@@ -64,10 +64,10 @@ export const MainMenusGradientCard = ({
         </div>
       )}
       <div className="relative px-4 pb-4 pt-4 flex-1 flex flex-col">
-        <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-300 mb-2">
+        <h3 className="text-lg font-semibold text-white mb-2">
           {title}
         </h3>
-        <p className="mt-4 text-neutral-600 dark:text-neutral-400 flex-1 text-sm leading-relaxed">
+        <p className="mt-4 text-neutral-300 flex-1 text-sm leading-relaxed">
           {description}
         </p>
         {(githubLink || liveLink) && (
