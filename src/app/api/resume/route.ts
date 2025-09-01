@@ -5,7 +5,7 @@ import { join } from 'path';
 export async function GET(request: NextRequest) {
   try {
     // Path to the resume PDF in the public directory
-    const resumePath = join(process.cwd(), 'public', 'Arjun_Govindan_SDE_2_May_2025.pdf');
+    const resumePath = join(process.cwd(), 'public', 'Arjun_Govindan_SDE_2_August_2025.pdf');
     
     // Read the file
     const fileBuffer = readFileSync(resumePath);
