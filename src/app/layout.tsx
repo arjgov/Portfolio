@@ -18,14 +18,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Arjun Govindan | Fullstack Developer Portfolio",
   description: "Portfolio of Arjun Govindan, Fullstack Developer.",
-  icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' }
-    ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.svg',
-  },
 };
 
 export default function RootLayout({
@@ -35,11 +27,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
-      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}>
         {children}
       </body>
