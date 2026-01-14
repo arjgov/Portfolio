@@ -145,7 +145,7 @@ const skillsData = [
 
 
 const stats = [
-  { label: "Years Experience", value: "4+", icon: Award },
+  { label: "Years Experience", value: "5+", icon: Award },
   { label: "Projects Delivered", value: "15+", icon: Code },
   { label: "Technologies", value: "25+", icon: Zap },
   { label: "Team Members Led", value: "8+", icon: Users }
