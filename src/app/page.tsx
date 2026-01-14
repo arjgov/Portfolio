@@ -784,7 +784,7 @@ export default function Home() {
       <footer className="py-8 bg-black text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[#a9a9a9] text-sm">
-            © 2025 Arjun Govindan. Built with Next.js, Tailwind CSS, and Reactbits
+            © 2026 Arjun Govindan. Built with Next.js, Tailwind CSS, and Reactbits
           </p>
         </div>
       </footer>
