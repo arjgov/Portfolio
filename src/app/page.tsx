@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform, easeOut } from "motion/react";
 import { 
   Github, 
@@ -23,11 +21,9 @@ import CountUp from "@/components/CountUp";
 import SkillsChromaGrid from "@/components/SkillsChromaGrid";
 import { MainMenusGradientCard } from "@/components/MainMenusGradientCard";
 import LottieAnimation from "@/components/LottieAnimation";
-import { LampContainer, LampDemo } from "@/components/ui/lamp";
 import ProfileCard from "@/components/ProfileCard";
 import { BookingSection } from "@/components/BookingSection";
 import { BookingModal } from "@/components/BookingModal";
-import { BookingButton } from "@/components/BookingButton";
 
 
 const experience = [
