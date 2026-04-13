@@ -505,6 +505,7 @@ export default function Home() {
                 circleSize={300}
                 githubLink="https://github.com/arjgov/power-picker"
                 liveLink="https://power-picker.vercel.app"
+                showComingSoon={true}
               >
                 <div className="flex items-center justify-center h-full w-full">
                   <LottieAnimation
@@ -531,6 +532,7 @@ export default function Home() {
                 circleSize={300}
                 githubLink="https://github.com/arjgov/omniscribe-ai"
                 liveLink="https://omniscribe-ai.vercel.app"
+                showComingSoon={true}
               >
                 <div className="flex items-center justify-center h-full w-full">
                   <LottieAnimation
@@ -557,6 +559,7 @@ export default function Home() {
                 circleSize={300}
                 githubLink="https://github.com/arjgov/studybuddy"
                 liveLink="https://studybuddy.vercel.app"
+                showComingSoon={true}
               >
                 <div className="flex items-center justify-center h-full w-full">
                   <LottieAnimation

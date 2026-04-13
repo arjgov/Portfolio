@@ -1,6 +1,7 @@
 "use client";
 import { ArrowUpRightIcon, Github, ExternalLink } from "lucide-react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { useMouse } from "@/hooks/useMouse";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,7 @@ export const MainMenusGradientCard = ({
   children,
   githubLink,
   liveLink,
+  showComingSoon = false,
 }: {
   title: string;
   description: string;
@@ -22,8 +24,31 @@ export const MainMenusGradientCard = ({
   className?: string;
   githubLink?: string;
   liveLink?: string;
+  showComingSoon?: boolean;
 }) => {
   const [mouse, parentRef] = useMouse();
+  const [showSoonMessage, setShowSoonMessage] = useState(false);
+
+  useEffect(() => {
+    if (!showSoonMessage) {
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setShowSoonMessage(false);
+    }, 1800);
+
+    return () => clearTimeout(timeout);
+  }, [showSoonMessage]);
+
+  const handleComingSoonClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!showComingSoon) {
+      return;
+    }
+
+    event.preventDefault();
+    setShowSoonMessage(true);
+  };
 
   return (
     <div
@@ -78,6 +103,7 @@ export const MainMenusGradientCard = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-white text-sm rounded-lg transition-colors"
+                onClick={handleComingSoonClick}
               >
                 <Github className="w-4 h-4" />
                 <span>Code</span>
@@ -89,6 +115,7 @@ export const MainMenusGradientCard = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 bg-white hover:bg-gray-100 text-black text-sm rounded-lg transition-colors border border-gray-200"
+                onClick={handleComingSoonClick}
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>Live</span>
@@ -97,6 +124,15 @@ export const MainMenusGradientCard = ({
           </div>
         )}
       </div>
+      {showComingSoon && showSoonMessage && typeof document !== "undefined" &&
+        createPortal(
+          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
+            <div className="px-4 py-2 rounded-full border border-white/25 bg-black/90 text-sm font-medium text-white shadow-lg backdrop-blur-sm">
+              Coming Soon!
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 };
